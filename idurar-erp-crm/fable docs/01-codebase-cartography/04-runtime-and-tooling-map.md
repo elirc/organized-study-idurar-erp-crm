@@ -69,7 +69,7 @@ A minimum working `.env` for the backend: `DATABASE=mongodb://localhost:27017/id
 - **Format:** Prettier 3 (frontend devDep; no script, run manually).
 - **Types:** none. `@types/react` is present but there's no `tsconfig`, no `.ts` files, no type-check step. This is plain JS throughout.
 - **Tests:** none. No test runner in either `package.json`, no `*.test.*` / `*.spec.*` files.
-- **CI:** none. No `.github/workflows`, no CI config found.
+- **CI:** no build/test CI. `.github/workflows/` does exist, but it holds only `codesee-arch-diagram.yml` (a CodeSee architecture-diagram action on push/PR, `continue-on-error: true`), `github-repo-stats.yml` (a daily stats cron) and a stray `CODEOWNERS` file. None of them installs dependencies, lints, builds or tests. (A `CODEOWNERS` inside `workflows/` is not read by GitHub; it must live in `.github/`, the repo root or `docs/`, which makes it a small good-first fix.)
 
 The practical consequence: **the only automated safety net is the frontend ESLint gate.** Every backend change and every cross-stack behavior is verified by hand. Treat that as context for every contribution — "add a test" often means "add the *first* test," which is a bigger task (see [05-quality-engineering/02-writing-tests-here.md](../05-quality-engineering/02-writing-tests-here.md)).
 

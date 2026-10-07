@@ -77,3 +77,16 @@ Running record of what was inspected while writing this curriculum, kept as work
 - The 40+ marketing README translations under `features/`.
 - Email templates (`emailTemplate/`) and the Resend/OpenAI integrations (present in deps, lightly wired).
 - Inventory middleware (`middlewares/inventory/`) — appears vestigial; not traced.
+
+## Re-check on 2026-10-07 (study copy `elirc/organized-study-idurar-erp-crm`)
+
+Static re-check of `fable docs/` and `docs2/`; nothing installed or run.
+
+- **Defects 1–5 re-confirmed at the same lines.**
+  1. `setup.js` L54–55 requires `PaymentMode`/`Taxes`; `models/appModels/` still holds only `Client.js`, `Invoice.js` and `Payment.js`.
+  2. `routes.jsx` L73–86 renders `<Quote/>`, `<QuoteCreate/>`, `<QuoteRead/>` and `<QuoteUpdate/>`.
+  3. `app.js` L42–43 mounts `/download` and `/public`; `downloadPdf.js` L9–11 calls `findOne({ _id: id })` without `removed`.
+  4. `invoiceController/summary.js` L37–40 has the date `$match` commented out.
+  5. `authUser.js` L25 runs `$push: { loggedSessions: token }`.
+- **Anchors:** every line-anchored citation in both trees lands inside its file. Missing paths are either proposals (`backend/jest.config.js`, `backend/test/*`, `.github/workflows/ci.yml`, the `Widget.js` drill, the `PaymentMode.js`/`Taxes.js` restorations in `docs2/`) or the git-ignored `backend/.env`.
+- **Drift fixed:** `04-runtime-and-tooling-map.md` said there was no `.github/workflows`. The folder exists, with `codesee-arch-diagram.yml` (CodeSee diagram action, `continue-on-error: true`), `github-repo-stats.yml` (daily stats cron) and a misplaced `CODEOWNERS`. None of them builds or tests, so the curriculum's "no CI" remains true in the sense of no build/test pipeline.
